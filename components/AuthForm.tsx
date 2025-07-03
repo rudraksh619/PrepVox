@@ -6,20 +6,11 @@ import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import {
   Form,
-  FormControl,
-  FormDescription,
-  
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
 import Link from "next/link";
-import { email } from "zod/v4-mini"
 import { toast } from "sonner"
-
 import FormField from "@/components/FormField"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 
 const authformSchema = (type:FormType) =>{
   
@@ -95,7 +86,8 @@ const router = useRouter();
       <FormField control={ form.control}
       name="password"
       label = "Password"
-     placeholder = "Your Password" />
+     placeholder = "Your Password"
+        type="password" />
 
         <Button className="btn" type="submit">{isSignIn ? "Sign-in" : "Create an Account"}</Button>
       </form>
