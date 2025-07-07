@@ -3,6 +3,9 @@ import dayjs from 'dayjs'
 import Image from 'next/image';
 import { interviewCovers ,mappings } from '@/constants';
 import { getRandomInterviewCover } from '@/lib/utils';
+import { Button } from './ui/button';
+import Link from 'next/link';
+import ShowTechIcons from '../components/ShowTechIcon';
 const InterviewCard = ({interviewId , userId , role , type, techstack,createdAt}: InterviewCardProps) => {
 
 const feedback = null as Feedback | null;
@@ -42,12 +45,25 @@ return (
 
         <p>{feedback?.totalScore || '---'}/100</p>
         </div>
-      
-
-        
+     
        </div>
 
-      </div>
+       <p className='line-clamp-2 '>
+        {feedback?.finalAssessment || "You haven't taken any interview yet..."}
+       </p>
+
+         <div className=' flex justify-between items-center '>
+          <ShowTechIcons techStack={techstack} />
+         <Button className='btn-primary' >
+          <Link href  = {feedback ? `/interview/${interviewId}/feedback` : `interview/${interviewId}`}>
+          {feedback ? "view feedback" : "Start Interview"}
+          </Link>
+         </Button>
+         </div>
+       </div>
+
+
+
     </div>
   )
 }
